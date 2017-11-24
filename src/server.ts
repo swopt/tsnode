@@ -32,7 +32,7 @@ import * as homeController from "./controllers/home";
 import * as userController from "./controllers/user";
 import * as apiController from "./controllers/api";
 import * as contactController from "./controllers/contact";
-
+import * as formController from "./controllers/form";
 /**
  * API keys and Passport configuration.
  */
@@ -86,6 +86,8 @@ app.use((req, res, next) => {
   next();
 });
 app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   // After successful login, redirect back to the intended page
   if (!req.user &&
       req.path !== "/login" &&
@@ -121,6 +123,14 @@ app.post("/account/profile", passportConfig.isAuthenticated, userController.post
 app.post("/account/password", passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post("/account/delete", passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userController.getOauthUnlink);
+
+
+
+/*
+ * FIS app routes
+*/
+app.get("/form", formController.getForm);
+app.post("/form/profile", formController.postUpdateProfile);
 
 /**
  * API examples routes.
