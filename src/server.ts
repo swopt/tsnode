@@ -129,6 +129,7 @@ app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userControl
 /*
  * FIS app routes
 */
+app.get("/prgtree", formController.getPrgTree);
 app.get("/form", formController.getForm);
 app.post("/form/profile", formController.postUpdateProfile);
 

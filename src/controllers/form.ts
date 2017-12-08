@@ -30,12 +30,59 @@ const formSample = {data: {
     {"accCode": "RAY04-01", "accName": "Raya Airways", "orgnName": "Mafrica Corporation - M00 (Sibu HQ)", "orgnCode": "M00", "nature": "Credit"}
 ];
 
+const prgTree = [
+    {"prgName": "Account Payable", "subs": [
+            {"prgName": "Enquiry", "subs": [
+                {"prgName": "Account Ledger Enquiry", "route": "enquiry"},
+                {"prgName": "Payment Voucher Enquiry", "route": "template"}
+            ]},
+            {"prgName": "Maintenance", "subs": [
+                {"prgName": "Account Category Maintenance"},
+                {"prgName": "AP Distribution Setting..."},
+                {"prgName": "Batch Posting Utility"},
+                {"prgName": "Creditor (Company)"},
+                {"prgName": "Creditor (Individual)"}
+            ]}
+        ]},
+        {"prgName": "Account Receivable", "subs": [
+            {"prgName": "Enquiry", "subs": [
+                {"prgName": "Account Ledger Enquiry"},
+                {"prgName": "Payment Voucher Enquiry"}
+            ]},
+            {"prgName": "Maintenance", "subs": [
+                {"prgName": "Account Category Maintenance"},
+                {"prgName": "AP Distribution Setting..."},
+                {"prgName": "Batch Posting Utility"},
+                {"prgName": "Creditor (Company)"},
+                {"prgName": "Creditor (Individual)"}
+            ]}
+        ]},
+        {"prgName": "Cash Management", "subs": [
+            {"prgName": "Enquiry", "subs": [
+                {"prgName": "Account Ledger Enquiry"},
+                {"prgName": "Payment Voucher Enquiry"}
+            ]},
+            {"prgName": "Maintenance", "subs": [
+                {"prgName": "Account Category Maintenance"},
+                {"prgName": "AP Distribution Setting..."},
+                {"prgName": "Batch Posting Utility"},
+                {"prgName": "Creditor (Company)"},
+                {"prgName": "Creditor (Individual)"}
+            ]}
+        ]}
+    ];
+
 /**
  * GET /form
  */
  export let getForm = (req: Request, res: Response) => {
      res.json(formSample);
  };
+
+
+ export let getPrgTree = (req: Request, res: Response) => {
+    res.json(prgTree);
+};
 
 /*
  * POST /form/profile
