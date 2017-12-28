@@ -30,47 +30,16 @@ const formSample = {data: {
     {"accCode": "RAY04-01", "accName": "Raya Airways", "orgnName": "Mafrica Corporation - M00 (Sibu HQ)", "orgnCode": "M00", "nature": "Credit"}
 ];
 
-const prgTree = [
-    {"prgName": "Account Payable", "subs": [
-            {"prgName": "Enquiry", "subs": [
-                {"prgName": "Account Ledger Enquiry", "route": "enquiry"},
-                {"prgName": "Payment Voucher Enquiry", "route": "template"}
-            ]},
-            {"prgName": "Maintenance", "subs": [
-                {"prgName": "Account Category Maintenance"},
-                {"prgName": "AP Distribution Setting..."},
-                {"prgName": "Batch Posting Utility"},
-                {"prgName": "Creditor (Company)"},
-                {"prgName": "Creditor (Individual)"}
-            ]}
-        ]},
-        {"prgName": "Account Receivable", "subs": [
-            {"prgName": "Enquiry", "subs": [
-                {"prgName": "Account Ledger Enquiry"},
-                {"prgName": "Payment Voucher Enquiry"}
-            ]},
-            {"prgName": "Maintenance", "subs": [
-                {"prgName": "Account Category Maintenance"},
-                {"prgName": "AP Distribution Setting..."},
-                {"prgName": "Batch Posting Utility"},
-                {"prgName": "Creditor (Company)"},
-                {"prgName": "Creditor (Individual)"}
-            ]}
-        ]},
-        {"prgName": "Cash Management", "subs": [
-            {"prgName": "Enquiry", "subs": [
-                {"prgName": "Account Ledger Enquiry"},
-                {"prgName": "Payment Voucher Enquiry"}
-            ]},
-            {"prgName": "Maintenance", "subs": [
-                {"prgName": "Account Category Maintenance"},
-                {"prgName": "AP Distribution Setting..."},
-                {"prgName": "Batch Posting Utility"},
-                {"prgName": "Creditor (Company)"},
-                {"prgName": "Creditor (Individual)"}
-            ]}
-        ]}
-    ];
+const sql = require("mssql");
+const sqlConfig = {
+    server: "dbserv\\sql2k8",
+    database: "FISMAF313GST",
+    user: "eric",
+    password: "sw0pt3r1c",
+    port: 1433
+};
+
+// let prgTree = [{}];
 
 /**
  * GET /form
@@ -81,7 +50,15 @@ const prgTree = [
 
 
  export let getPrgTree = (req: Request, res: Response) => {
-    res.json(prgTree);
+    sql.connect(sqlConfig, function(err: any) {
+        if (err) {console.log(err); sql.close(); }
+        const sqlReq = new sql.Request();
+        sqlReq.query("select * from prg_profile where prg_display = 'Y' order by subs_code,prg_type", function (err: any, recordset: any) {
+            if (err) {console.log(err); sql.close(); }
+            res.json(recordset);
+            sql.close();
+        });
+    });
 };
 
 /*
