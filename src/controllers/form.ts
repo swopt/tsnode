@@ -1,26 +1,38 @@
 import { Request, Response, NextFunction } from "express";
 
-const formSample = {data: {
-    formTitle: "Sample Form",
-    formGroups: [
+const formSample = {data:  {"meta_id": "personal",
+    "title": "Personnel",
+    "endpoints": {
+        "insert": { "method": "post", "url": "personal/save" },
+        "list"  : { "method": "get",  "url": "personals" }
+    },
+    "fields": [
         {
-            title: "Sample Group 1",
-            controlItems: [
-                {"key": "accCode", "label": "Account Code", "controlType": "textboxauto", "required": true, "options": [{"value": "AIR02-01"}, {"value": "MAL04-01"}, {"value": "MAL05-01"}, {"value": "MAL06-01"}, {"value": "RAY04-01"}]},
-                {"key": "accName", "label": "Account Name", "controlType": "textbox", "required": true},
-                {"key": "remark", "label": "Remark", "controlType": "textarea"},
-                {"key": "accStatus", "label": "Account Status", "value": "Active", "controlType": "dropdown", "options": [{"key": "active", "value": "Active"}, {"key": "dactive", "value": "Deactivated"}]},
-                {"key": "term", "label": "Term (days)", "type": "number", "step": 0.01, "controlType": "textbox"},
-                {"key": "dateCreate", "label": "Date Created", "controlType": "textbox", "type": "date"},
-                {"key": "credLimit", "label": "Credit Limit", "controlType": "textbox", "type": "number", "step": 0.01},
-                {"key": "credAvail", "label": "Credit Available", "controlType": "textbox", "type": "number", "step": 0.01},
-                {"key": "debBal", "label": "Debit Balance", "controlType": "textbox", "type": "number", "step": 0.01},
-                {"key": "credBal", "label": "Credit Balance", "controlType": "textbox", "type": "number", "step": 0.01},
-                {"key": "outBal", "label": "Outstanding Balance", "controlType": "textbox", "type": "number", "step": 0.01}
+            "key": "acc_code",
+            "label": "Account Code",
+            "type": "reference_value",
+            "required": true,
+            "reference_values": [
+                {"value": "AIR02-01"},
+                {"value": "MAL04-01"},
+                {"value": "MAL05-01"},
+                {"value": "MAL06-01"},
+                {"value": "RAY04-01"}
             ]
+        },
+        {
+            "key": "acc_name",
+            "label": "Account Name",
+            "type": "string",
+            "required": true
+        },
+        {
+            "key": "remark",
+            "label": "Remark",
+            "type": "string_multiline"
         }
     ]
- }};
+}};
 
  const sampleProfiles = [
     {"accCode": "AIR02-01", "accName": "AirAsia Berhad", "orgnName": "Mafrica Corporation - M00 (Sibu HQ)", "orgnCode": "M00", "nature": "Credit"},
