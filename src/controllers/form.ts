@@ -4,7 +4,7 @@ const formSample = {data:  {"meta_id": "personal",
     "title": "Personnel",
     "endpoints": {
         "insert": { "method": "post", "url": "personal/save" },
-        "list"  : { "method": "get",  "url": "personals" }
+        "list"  : { "method": "get",  "url": "http://fis:3000/form/profile" }
     },
     "fields": [
         {
@@ -26,6 +26,9 @@ const formSample = {data:  {"meta_id": "personal",
             "type": "string",
             "required": true
         },
+        {"key": "term", "label": "Term (days)", "type": "number"},
+        {"key": "date_create", "label": "Date Created", "type": "date"},
+        {"key": "cred_limit", "label": "Credit Limit", "type": "number", "step": 0.01},
         {
             "key": "remark",
             "label": "Remark",
@@ -35,11 +38,11 @@ const formSample = {data:  {"meta_id": "personal",
 }};
 
  const sampleProfiles = [
-    {"accCode": "AIR02-01", "accName": "AirAsia Berhad", "orgnName": "Mafrica Corporation - M00 (Sibu HQ)", "orgnCode": "M00", "nature": "Credit"},
-    {"accCode": "MAL04-01", "accName": "Malaysia Airlines Berhad", "orgnName": "Mafrica Corporation - M00 (Sibu HQ)", "orgnCode": "M00", "nature": "Credit"},
-    {"accCode": "MAL05-01", "accName": "Firefly", "orgnName": "Mafrica Corporation - M00 (Sibu HQ)", "orgnCode": "M00", "nature": "Credit"},
-    {"accCode": "MAL06-01", "accName": "MASWings", "orgnName": "Mafrica Corporation - M00 (Sibu HQ)", "orgnCode": "M00", "nature": "Credit"},
-    {"accCode": "RAY04-01", "accName": "Raya Airways", "orgnName": "Mafrica Corporation - M00 (Sibu HQ)", "orgnCode": "M00", "nature": "Credit"}
+    {"acc_code": "AIR02-01", "acc_name": "AirAsia Berhad", "term": 30, "date_create": "2018-01-01", "cred_limit": 2999.99, "remark": "the quick brown fox jumps over the lazy dog"},
+    {"acc_code": "MAL04-01", "acc_name": "Malaysia Airlines Berhad", "nature": "Credit"},
+    {"acc_code": "MAL05-01", "acc_name": "Firefly", "nature": "Credit"},
+    {"acc_code": "MAL06-01", "acc_name": "MASWings", "nature": "Credit"},
+    {"acc_code": "RAY04-01", "acc_name": "Raya Airways", "nature": "Credit"}
 ];
 
 const sql = require("mssql");
@@ -79,7 +82,9 @@ const sqlConfig = {
 
 export let postUpdateProfile = (req: Request, res: Response, next: NextFunction) => {
     const reqAccCode = req.body.acccode;
-    const selectedProf = sampleProfiles.find(i => i.accCode === reqAccCode);
+    const selectedProf = sampleProfiles.find(i => i.acc_code === reqAccCode);
+    console.log("receiving post update for " + reqAccCode);
     res.setHeader("Content-Type", "application/json");
     res.json(selectedProf);
+    console.log("response for " + reqAccCode + " is " + JSON.stringify(selectedProf));
 };
