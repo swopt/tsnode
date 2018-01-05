@@ -13,11 +13,13 @@ const formSample = {data:  {"meta_id": "personal",
             "type": "reference_value",
             "required": true,
             "reference_values": [
-                {"value": "AIR02-01"},
-                {"value": "MAL04-01"},
-                {"value": "MAL05-01"},
-                {"value": "MAL06-01"},
-                {"value": "RAY04-01"}
+                {"value": "EAR-1"},
+                {"value": "GEE-2"},
+                {"value": "TRI-3"},
+                {"value": "SON-4"},
+                {"value": "QUI-5"},
+                {"value": "LIM-6"},
+                {"value": "BLE-7"}
             ]
         },
         {
@@ -38,12 +40,63 @@ const formSample = {data:  {"meta_id": "personal",
 }};
 
  const sampleProfiles = [
-    {"acc_code": "AIR02-01", "acc_name": "AirAsia Berhad", "term": 30, "date_create": "2018-01-01", "cred_limit": 2999.99, "remark": "the quick brown fox jumps over the lazy dog"},
-    {"acc_code": "MAL04-01", "acc_name": "Malaysia Airlines Berhad", "nature": "Credit"},
-    {"acc_code": "MAL05-01", "acc_name": "Firefly", "nature": "Credit"},
-    {"acc_code": "MAL06-01", "acc_name": "MASWings", "nature": "Credit"},
-    {"acc_code": "RAY04-01", "acc_name": "Raya Airways", "nature": "Credit"}
-];
+    {
+      "remark": "Proident consequat ad culpa irure eu culpa aliqua sunt enim consectetur cupidatat sint cillum.",
+      "cred_limit": "947.11",
+      "date_create": "2016-08-19",
+      "term": 4,
+      "acc_code": "EAR-1",
+      "acc_name": "EARTHWAX"
+    },
+    {
+      "remark": "Eiusmod cupidatat velit elit id duis qui sint mollit minim cupidatat tempor aliquip cupidatat.",
+      "cred_limit": "982.66",
+      "date_create": "2017-02-07",
+      "term": 28,
+      "acc_code": "GEE-2",
+      "acc_name": "GEEKKO"
+    },
+    {
+      "remark": "Cillum et aute mollit mollit occaecat sint amet excepteur qui.",
+      "cred_limit": "767.44",
+      "date_create": "2014-07-26",
+      "term": 13,
+      "acc_code": "TRI-3",
+      "acc_name": "TRI@TRIBALOG"
+    },
+    {
+      "remark": "Cillum elit elit deserunt quis nulla aute nostrud voluptate pariatur deserunt.",
+      "cred_limit": "2178.77",
+      "date_create": "2014-01-05",
+      "term": 3,
+      "acc_code": "SON-4",
+      "acc_name": "SONIQUE"
+    },
+    {
+      "remark": "Eu duis aute id nulla pariatur nulla veniam.",
+      "cred_limit": 9029,
+      "date_create": "2014-12-04",
+      "term": 26,
+      "acc_code": "QUI-5",
+      "acc_name": "QUIZMO"
+    },
+    {
+      "remark": "Irure dolor cupidatat labore aliquip enim reprehenderit aute proident.",
+      "cred_limit": "9314.6",
+      "date_create": "2017-09-08",
+      "term": 30,
+      "acc_code": "LIM-6",
+      "acc_name": "LIMAGE"
+    },
+    {
+      "remark": "Quis ullamco qui occaecat pariatur anim occaecat esse enim eu.",
+      "cred_limit": "9035.1",
+      "date_create": "2015-05-18",
+      "term": 11,
+      "acc_code": "BLE-7",
+      "acc_name": "BLEENDOT"
+    }
+  ];
 
 const sql = require("mssql");
 const sqlConfig = {
