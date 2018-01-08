@@ -117,6 +117,16 @@ const sqlConfig = {
  };
 
 
+let log: string = "Manually refresh this page to see changes";
+
+ /*
+ * GET /form/log
+ */
+export let getFormLog = (req: Request, res: Response) => {
+
+    res.send(log);
+};
+
  export let getPrgTree = (req: Request, res: Response) => {
     sql.connect(sqlConfig, function(err: any) {
         if (err) {console.log(err); sql.close(); }
@@ -136,8 +146,8 @@ const sqlConfig = {
 export let postUpdateProfile = (req: Request, res: Response, next: NextFunction) => {
     const reqAccCode = req.body.acccode;
     const selectedProf = sampleProfiles.find(i => i.acc_code === reqAccCode);
-    console.log("receiving post update for " + reqAccCode);
+    log += "<br/>" + "receiving POST for " + reqAccCode;
     res.setHeader("Content-Type", "application/json");
     res.json(selectedProf);
-    console.log("response for " + reqAccCode + " is " + JSON.stringify(selectedProf));
+    log += "<br/>" + JSON.stringify(selectedProf);
 };

@@ -131,6 +131,7 @@ app.get("/account/unlink/:provider", passportConfig.isAuthenticated, userControl
 */
 app.get("/prgtree", formController.getPrgTree);
 app.get("/form", formController.getForm);
+app.get("/form/log", formController.getFormLog);
 app.post("/form/profile", formController.postUpdateProfile);
 
 /**
