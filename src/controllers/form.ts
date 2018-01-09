@@ -144,7 +144,7 @@ export let getFormLog = (req: Request, res: Response) => {
  */
 
 export let postUpdateProfile = (req: Request, res: Response, next: NextFunction) => {
-    const reqAccCode = req.body.acccode;
+    const reqAccCode = req.body.acc_code;
     const selectedProf = sampleProfiles.find(i => i.acc_code === reqAccCode);
     log += "<br/>" + "receiving POST for " + reqAccCode;
     res.setHeader("Content-Type", "application/json");
