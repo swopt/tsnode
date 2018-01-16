@@ -39,6 +39,10 @@ const formSample = {data:  {"meta_id": "personal",
     ]
 }};
 
+const routes = [
+    {path: "form1", component: "form", data: {metaUrl: "http://fis:3000/form"}}
+];
+
  const sampleProfiles = [
     {
       "remark": "Proident consequat ad culpa irure eu culpa aliqua sunt enim consectetur cupidatat sint cillum.",
@@ -114,6 +118,10 @@ const sqlConfig = {
  */
  export let getForm = (req: Request, res: Response) => {
      res.json(formSample);
+ };
+
+ export let getRoutes = (req: Request, res: Response) => {
+    res.json(routes);
  };
 
 
