@@ -40,7 +40,8 @@ const formSample = {data:  {"meta_id": "personal",
 }};
 
 const routes = [
-    {path: "form1", component: "form", data: {metaUrl: "http://fis:3000/form"}}
+    {path: "form1", type: "form", data: {metaUrl: "http://fis:3000/form"}},
+    {path: "form2", type: "form", data: {metaUrl: "http://fis:3000/form"}}
 ];
 
  const sampleProfiles = [
