@@ -133,6 +133,7 @@ app.get("/prgtree", formController.getPrgTree);
 app.get("/form", formController.getForm);
 app.get("/form/log", formController.getFormLog);
 app.get("/routes", formController.getRoutes);
+app.get("/layout", formController.getLayout);
 app.post("/form/profile", formController.postUpdateProfile);
 
 /**
